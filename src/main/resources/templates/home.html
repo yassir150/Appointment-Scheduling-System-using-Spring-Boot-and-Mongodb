@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/3301/3301556.png">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+	<meta charset="UTF-8">
+	<title>Appointment system</title>
+</head>
+
+<style>
+	nav {
+		background-color: rgb(5, 182, 5);
+	}
+
+	.navbar-brand {
+		font-weight: bold;
+		color: white !important;
+	}
+
+	.head1,
+	.fa {
+		color: rgb(5, 182, 5);
+		font-weight: bold;
+	}
+
+	form {
+		border-radius: 4px !important;
+		max-width: 1200px;
+		height: auto;
+		margin: auto;
+		border: 1px solid rgb(5, 182, 5) !important;
+	}
+
+	label {
+		text-align: left !important;
+		color: black;
+		font-weight: 500;
+		margin-bottom: 5px;
+	}
+
+	.btn {
+		background-color: rgb(5, 182, 5) !important;
+		font-weight: 600;
+	}
+
+	#dashboard_link,
+	#appointment_status_link {
+		
+		text-align: center;
+		color: rgb(5, 182, 5) !important;
+		background-color: white !important;
+	}
+</style>
+
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light">
+		<div class="container">
+			<a class="navbar-brand" href="#"><i class="fa fa-files-o" aria-hidden="true" style="color: white;"></i>
+				Appointment System</a>
+			<div class="ml-auto">
+				<a th:href="@{/admin/login}" class="btn" type="button" id="dashboard_link"><i class="fa fa-user-circle-o"
+						aria-hidden="true"></i> Admin</a>&nbsp;&nbsp;
+				<a th:href="@{/user/login}" class="btn" type="button" id="appointment_status_link"><i class="fa fa-users"
+						aria-hidden="true"></i> User</a>
+			</div>
+		</div>
+	</nav>
+
+
+	
+		
+
+</body>
+
+</html>

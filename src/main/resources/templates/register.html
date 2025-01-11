@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+	<link rel="shortcut icon" href="https://cdn.pixabay.com/photo/2017/06/10/07/22/news-2389226_960_720.png">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+	<meta charset="UTF-8">
+	<title>News Reader App</title>
+</head>
+
+<style>
+	nav,
+	#login_btn {
+		background-color: rgb(5, 182, 5);
+	}
+
+	.navbar-brand {
+		font-weight: bold;
+		color: white !important;
+
+	}
+
+	form {
+		border-radius: 4px !important;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+		max-width: 390px;
+		height: auto;
+		margin: auto;
+	}
+</style>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-light">
+			<div class="container">
+				<a class="navbar-brand" href="#"><i class="fa fa-files-o" aria-hidden="true" style="color: white;"></i>
+					Appointment System</a>
+				<div class="ml-auto">
+					<a th:href="@{/}" class="btn" type="button" id="dashboard_link" style="color: white;"><i class="fa fa-home"
+							aria-hidden="true"></i> Home</a>&nbsp;&nbsp;
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+		<div class="container p-5">
+			<div class="d-flex justify-content-center">
+
+				<form th:action="@{/user/create}" method="post" class="form-control p-4">
+					<center><i class="fa fa-newspaper-o fa-4x" aria-hidden="true"></i></center>
+					<h5 class="text text-center" style="color: rgb(5, 182, 5); font-weight: bolder;">Create User Account
+					</h5>
+					<div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+						<strong><span th:text="${success}"></span></strong>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+
+					<div th:if="${exist}" class="alert alert-warning alert-dismissible fade show" role="alert">
+						<strong><span th:text="${exist}"></span></strong>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+
+					<div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+						<strong><span th:text="${error}"></span></strong>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+
+					<div class="mb-2 mt-4">
+						<label for="email"><i class="fa fa-user-o" aria-hidden="true"></i> User Name</label> <input
+							type="text" id="name" name="name" class="form-control" required>
+					</div>
+					<div class="mb-2 mt-4">
+						<label for="email"><i class="fa fa-envelope" aria-hidden="true"></i> Email</label> <input
+							type="text" id="email" name="email" class="form-control" required>
+					</div>
+
+					<div class="mb-2 mt-4">
+						<label for="email"><i class="fa fa-lock" aria-hidden="true"></i> Password</label>
+						<input type="text" id="password" name="password" class="form-control" required>
+					</div>
+					<button class="btn mt-2 mb-2 text-white" id="login_btn" style="font-weight: 700;">Create
+						Account</button>
+					<br>
+					<h6 class="text text-center text-bold mt-4">I have an account <a th:href="@{/user/login}">Login</a>
+					</h6>
+				</form>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>

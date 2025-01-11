@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="shortcut icon"
+	href="https://cdn-icons-png.flaticon.com/512/3301/3301556.png">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<meta charset="UTF-8">
+<title>Appointment system</title>
+</head>
+
+<style>
+nav {
+	background-color: rgb(5, 182, 5);
+}
+
+.navbar-brand {
+	font-weight: bold;
+	color: white !important;
+}
+
+.head1, .fa {
+	color: rgb(5, 182, 5);
+	font-weight: bold;
+}
+
+form {
+	border-radius: 4px !important;
+	max-width: 1000px;
+	height: auto;
+	margin: auto;
+	border: 1px solid rgb(5, 182, 5) !important;
+}
+
+label {
+	text-align: left !important;
+	color: black;
+	font-weight: 500;
+	margin-bottom: 5px;
+}
+
+.btn {
+	background-color: rgb(5, 182, 5) !important;
+	font-weight: 600;
+}
+
+#dashboard_link {
+	text-align: center;
+	color: rgb(5, 182, 5) !important;
+	background-color: white !important;
+}
+</style>
+
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light">
+		<div class="container">
+			<a class="navbar-brand" href="#"><i class="fa fa-files-o"
+				aria-hidden="true" style="color: white;"></i> Appointment System</a>
+			<div class="ml-auto">
+				<a th:href="@{/}" class="btn" type="button" id="dashboard_link"><i
+					class="fa fa-home" aria-hidden="true"></i> Home</a>&nbsp;&nbsp;
+			</div>
+		</div>
+	</nav>
+
+
+	<main>
+		<div class="container p-3 mt-3">
+			<div class="d-flex justify-content-center">
+				<form th:action="@{/search}" method="post"
+					class="form-control p-3 mt-3">
+
+					<div th:if="${error}"
+						class="alert alert-danger alert-dismissible fade show"
+						role="alert">
+						<strong><span th:text="${error}"></span></strong>
+						<button type="button" class="btn-close" data-bs-dismiss="alert"
+							aria-label="Close"></button>
+					</div>
+
+					<div class="mb-3">
+						<label for="appointmentId" class="mb-2">Appointment ID</label> <input
+							type="text" name="appointmentId" class="form-control"
+							id="appointmentId" required>
+					</div>
+
+					<div class="row p-2 mt-2 mb-3">
+						<button class="btn text-light" type="submit">Search
+							Appointment</button>
+					</div>
+				</form>
+			</div>
+			<br>
+			<div class="table-responsive" th:if="${appointment != null}">
+				<table class="table table-bordered mt-5">
+					<thead>
+						<tr>
+							<th>Appointment ID</th>
+							<th>Service Type</th>
+							<th>Appointment Date</th>
+							<th>Duration</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${appointment != null}">
+							<td th:text="${appointment.appointmentId}"></td>
+							<td th:text="${appointment.serviceType}"></td>
+							<td th:text="${appointment.appointmentDate}"></td>
+							<td th:text="${appointment.appointmentDuration}"></td>
+							<td th:text="${appointment.status}"></td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</main>
+</body>
+
+</html>

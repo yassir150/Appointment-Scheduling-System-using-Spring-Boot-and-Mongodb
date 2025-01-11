@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/3301/3301556.png">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Appointment system</title>
+</head>
+
+<style>
+    nav,thead {
+        background-color: rgb(5, 182, 5);
+    }
+
+    .navbar-brand {
+        font-weight: bold;
+        color: white !important;
+    }
+
+    .head1,
+    .fa {
+        color: rgb(5, 182, 5);
+        font-weight: bold;
+    }
+
+    form {
+        border-radius: 4px !important;
+        max-width: 1000px;
+        height: auto;
+        margin: auto;
+        border: 1px solid rgb(5, 182, 5) !important;
+    }
+
+    label {
+        text-align: left !important;
+        color: black;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .btn {
+        background-color: rgb(5, 182, 5) !important;
+        font-weight: 600;
+    }
+
+    #dashboard_link {
+        text-align: center;
+        color: rgb(5, 182, 5) !important;
+        background-color: white !important;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fa fa-files-o" aria-hidden="true" style="color: white;"></i>
+                Appointment System</a>
+            <div class="ml-auto">
+                <a th:href="@{/admin/login}" class="btn" type="button" id="dashboard_link"><i class="fa fa-sign-out" aria-hidden="true"></i> logout</a>&nbsp;&nbsp;
+            </div>
+        </div>
+    </nav>
+
+
+    <main>
+        <div class="container p-3 mt-3">
+            <div class="analysis mt-5 mb-4 p-5" style="background-color: rgb(235, 241, 235);">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card bg-dark">
+                            <div class="card-body text-center text-light">
+                                <h5 style="color: white;"><i class="fa fa-folder text-light"></i> Total Appointment</h5>
+                                <h2 class="text text-center text-light" th:text="${totalAppointments}"></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card bg-primary">
+                            <div class="card-body text-center text-light">
+                                <h5 style="color: white;"><i class="fa fa-check text-light"></i> Total Booked</h5>
+                                <h2 class="text text-center text-light" th:text="${totalBooked}"></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card bg-warning">
+                            <div class="card-body text-center text-light">
+                                <h5 style="color: white;"><i class="fa fa-clock-o text-light"></i> Total Pendings</h5>
+                                <h2 class="text text-center text-light" th:text="${totalPending}"></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<br>
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="text text-light">
+                        <th>SI.NO</th>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Appointment ID</th>
+                        <th>ServiceType</th>
+                        <th>Appointment Date</th>
+                        <th>Required Time</th>
+                        <th>Status</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="appointment, stat : ${appointments}">
+                            <td th:text="${stat.count}"></td>
+                            <td th:text="${appointment.userName}"></td>
+                            <td th:text="${appointment.email}"></td>
+                            <td th:text="${appointment.phone}"></td>
+                            <td th:text="${appointment.address}"></td>
+                            <td th:text="${appointment.appointmentId}"></td>
+                            <td th:text="${appointment.serviceType}"></td>
+                            <td th:text="${appointment.appointmentDate}"></td>
+                            <td th:text="${appointment.appointmentDuration}"></td>
+                            <td th:text="${appointment.status}"></td>
+                        </tr>
+                        <tr th:if="${appointments.size() == 0}">
+                            <td colspan="11" class="text-center text-danger"><h6>No Data Available</h6></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+</html>
