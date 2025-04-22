@@ -61,7 +61,7 @@
 			<a class="navbar-brand" href="#"><i class="fa fa-files-o" aria-hidden="true" style="color: white;"></i>
 				Appointment System</a>
 			<div class="ml-auto">
-				<a th:href="@{/user/login}" class="btn" type="button" id="dashboard_link"><i class="fa fa-sign-out" aria-hidden="true"></i> logout</a>&nbsp;&nbsp;
+				<a th:href="@{/logout}" class="btn" type="button" id="dashboard_link"><i class="fa fa-sign-out" aria-hidden="true"></i> logout</a>&nbsp;&nbsp;
 			</div>
 		</div>
 	</nav>
@@ -88,7 +88,7 @@
 						<div class="col-sm-6">
 							<div class="mb-3">
 								<label for=""><i class="fa fa-user"></i> User Name</label>
-								<input type="text" name="userName" class="form-control" id="" required>
+								<input type="text" name="userName" class="form-control" id="" th:value="${patientName}" readonly>
 							</div>
 							<div class="mb-3">
 								<label for=""><i class="fa fa-envelope"></i> Email Address</label>
@@ -98,23 +98,8 @@
 								<label for=""><i class="fa fa-phone"></i> Phone Number</label>
 								<input type="text" name="phone" class="form-control" id="" required>
 							</div>
-							<div class="mb-3">
-								<label for="">Address</label>
-								<textarea name="address" id="" cols="30" rows="1" class="form-control" required></textarea>
-							</div>
 						</div>
 						<div class="col-sm-6">
-							
-							<div class="mb-3">
-								<label for="">ServiceType</label>
-								<select id="role" class="form-control form-select" name="serviceType" required>
-							<option>select service</option>
-							<option value="interview">Interview</option>
-							<option value="professional">Professional</option>
-							<option value="Career Coaching">Career Coaching</option>
-							<option value="others">Others</option>
-						</select>
-							</div>
 							<div class="mb-3">
 								<label for=""><i class="fa fa-clock-o"></i> Appointment Date</label>
 								<input type="date" name="appointmentDate" class="form-control" id="" required>
@@ -132,7 +117,7 @@
 							</div>
 							<div class="mb-3">
 								<label for=""><i class="fa fa-check"></i> Status</label>
-								<input type="text" name="status" class="form-control"  id="status">
+								<input type="text" name="status" class="form-control"  id="status" value="pending" readonly>
 							</div>
 						</div>
 					</div>
@@ -145,19 +130,19 @@
 		</div>
 	</main>
 
-<script>
-        // Define the possible statuses
-        const statuses = ["booked", "pending"];
+<!--<script>-->
+<!--        // Define the possible statuses-->
+<!--        const statuses = ["booked", "pending"];-->
 
-        // Function to get a random status
-        function getRandomStatus() {
-            const randomIndex = Math.floor(Math.random() * statuses.length);
-            return statuses[randomIndex];
-        }
+<!--        // Function to get a random status-->
+<!--        function getRandomStatus() {-->
+<!--            const randomIndex = Math.floor(Math.random() * statuses.length);-->
+<!--            return statuses[randomIndex];-->
+<!--        }-->
 
-        // Set the random status to the input field
-        document.getElementById('status').value = getRandomStatus();
-    </script>
+<!--        // Set the random status to the input field-->
+<!--        document.getElementById('status').value = getRandomStatus();-->
+<!--    </script>-->
 </body>
 
 </html>

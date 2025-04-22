@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/3301/3301556.png">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Edit Appointment</title>
+</head>
+
+<style>
+    nav,thead {
+        background-color: rgb(5, 182, 5);
+    }
+
+    .navbar-brand {
+        font-weight: bold;
+        color: white !important;
+    }
+
+    .head1,
+    .fa {
+        color: rgb(5, 182, 5);
+        font-weight: bold;
+    }
+
+    form {
+        border-radius: 4px !important;
+        max-width: 1000px;
+        height: auto;
+        margin: auto;
+        border: 1px solid rgb(5, 182, 5) !important;
+        padding: 20px;
+    }
+
+    label {
+        text-align: left !important;
+        color: black;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .btn {
+        background-color: rgb(5, 182, 5) !important;
+        font-weight: 600;
+    }
+
+    #dashboard_link {
+        text-align: center;
+        color: rgb(5, 182, 5) !important;
+        background-color: white !important;
+    }
+
+    .btn-edit {
+        background-color: rgb(5, 182, 5) !important;
+        color: white;
+    }
+
+    .btn-delete {
+        background-color: red !important;
+        color: white;
+    }
+</style>
+
+<body>
+<nav class="navbar navbar-expand-sm navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fa fa-files-o" aria-hidden="true" style="color: white;"></i>
+            Appointment System</a>
+        <div class="ml-auto">
+            <a th:href="@{/logout}" class="btn" type="button" id="dashboard_link"><i class="fa fa-sign-out" aria-hidden="true"></i> logout</a>&nbsp;&nbsp;
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div style="height: 50px;"></div>
+    <div class="container">
+        <form th:action="@{/appointment/edit}" th:object="${appointment}" method="post">
+            <input type="hidden" id="id" th:field="*{id}">
+            <div class="mb-3">
+                <label for="userName" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="userName" th:field="*{userName}" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" th:field="*{email}" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="phone" th:field="*{phone}" required>
+            </div>
+            <div class="mb-3">
+                <label for="appointmentDate" class="form-label">Appointment Date</label>
+                <input type="date" class="form-control" id="appointmentDate" th:field="*{appointmentDate}" required>
+            </div>
+            <div class="mb-3">
+                <label for="appointmentDuration" class="form-label">Required Time</label>
+                <input type="text" class="form-control" id="appointmentDuration" th:field="*{appointmentDuration}" required>
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-control" id="status" th:field="*{status}" required>
+                    <option value="booked">Booked</option>
+                    <option value="pending">Pending</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-edit">Save</button>
+        </form>
+    </div>
+</main>
+</body>
+
+</html>

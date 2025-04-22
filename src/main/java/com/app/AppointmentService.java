@@ -1,6 +1,8 @@
 package com.app;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,6 @@ public class AppointmentService {
 	@Autowired
 	private UserRepo userRepo;
 
-	@Autowired
-	private AdminRepo adminRepo;
 
 	/**
 	 * Creates a new user account.
@@ -30,6 +30,7 @@ public class AppointmentService {
 			return false;
 	}
 
+
 	/**
 	 * Finds a user by their email.
 	 * @param email The email of the user to find.
@@ -38,6 +39,18 @@ public class AppointmentService {
 	public boolean findByUserEmail(String email) {
         return userRepo.findByEmail(email) != null;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/**
 	 * Authenticates a user based on email and password.
@@ -49,15 +62,7 @@ public class AppointmentService {
 		return userRepo.findByEmailAndPassword(email, password);
 	}
 
-	/**
-	 * Authenticates an admin based on email and password.
-	 * @param email The email of the admin.
-	 * @param password The password of the admin.
-	 * @return Admin.
-	 */
-	public Admin adminLogin(String email, String password) {
-		return adminRepo.findByEmailAndPassword(email, password);
-	}
+
 
 	/**
 	 * Saves an appointment.
@@ -65,10 +70,17 @@ public class AppointmentService {
 	 * @return true if the appointment is successfully saved.
 	 */
 	public boolean saveData(Appointment appointment) {
-		appointment.setAppointmentId(generateRandomString());
 		repo.save(appointment);
 		return true;
 	}
+
+
+
+
+
+
+
+
 
 	/**
 	 * Retrieves all appointments.
@@ -77,6 +89,97 @@ public class AppointmentService {
 	public List<Appointment> findAllAppointments() {
 		return repo.findAll();
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Finds appointments by user ID.
+	 * @param userId The ID of the user.
+	 * @return A list of appointments for the specified user.
+	 */
+	public List<Appointment> findAppointmentsByPatientId(String userId) {
+		return repo.findByPatientId(userId);
+	}
+
+	/**
+	 * Finds appointments by user ID.
+	 * @param appointmentId The ID of the user.
+	 * @return A list of appointments for the specified user.
+	 */
+	public Appointment findAppointmentById(String appointmentId) {
+		return repo.findAppointmentById(appointmentId);
+	}
+
+
+	public boolean deleteAppointment(String id) {
+		if (repo.existsById(id)) {
+			repo.deleteById(id);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
+	public boolean updateAppointmentStatus(String id, String status) {
+		Appointment appointment = repo.findById(id).orElse(null);
+		if (appointment != null) {
+			appointment.setStatus(status);
+			repo.save(appointment);
+			return true;
+		}
+		return false;
+	}
+
+
+
+	public List<User> findAllPatients() {
+		return userRepo.findByUserType("patient");
+	}
+
+	public Map<String, Long> getAppointmentCountsForPatients() {
+		List<User> patients = findAllPatients();
+		Map<String, Long> appointmentCounts = new HashMap<>();
+		for (User patient : patients) {
+			long count = repo.countByPatientId(patient.getId());
+			appointmentCounts.put(patient.getId(), count);
+		}
+		return appointmentCounts;
+	}
+
+
+
+
+
+
+
+	public boolean updateAppointment(Appointment appointment) {
+		if (repo.existsById(appointment.getId())) {
+			repo.save(appointment);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean deletePatient(String id) {
+		try {
+			userRepo.deleteById(id);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 
 	/**
 	 * Generates a random string for appointment ID.

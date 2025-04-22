@@ -16,11 +16,9 @@ public class Appointment {
 	private String id;
 	
 	private String userName;
+	private String patientId;
 	private String email;
 	private String phone;
-	private String address;
-	private String appointmentId;
-	private String serviceType;
 	private String appointmentDate;
 	private String appointmentDuration;
 	private String status;

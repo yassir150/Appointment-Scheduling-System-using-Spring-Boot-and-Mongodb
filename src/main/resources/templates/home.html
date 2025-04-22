@@ -46,6 +46,15 @@
 		font-weight: 600;
 	}
 
+	body {
+		/*background-color: rgba(5, 182, 5, 0.5); !* Semi-transparent background color *!*/
+		background-image: url(user.png);
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		height: 100%;
+	}
+
 	#dashboard_link,
 	#appointment_status_link {
 		
@@ -55,23 +64,17 @@
 	}
 </style>
 
-<body>
+<body >
 	<nav class="navbar navbar-expand-sm navbar-light">
 		<div class="container">
 			<a class="navbar-brand" href="#"><i class="fa fa-files-o" aria-hidden="true" style="color: white;"></i>
 				Appointment System</a>
 			<div class="ml-auto">
-				<a th:href="@{/admin/login}" class="btn" type="button" id="dashboard_link"><i class="fa fa-user-circle-o"
-						aria-hidden="true"></i> Admin</a>&nbsp;&nbsp;
-				<a th:href="@{/user/login}" class="btn" type="button" id="appointment_status_link"><i class="fa fa-users"
-						aria-hidden="true"></i> User</a>
+				<a th:href="@{/login}" class="btn" type="button" id="appointment_status_link"><i class="fa fa-users"
+						aria-hidden="true"></i> Login</a>
 			</div>
 		</div>
 	</nav>
-
-
-	
-		
 
 </body>
 
