@@ -90,11 +90,3 @@ This is a web-based appointment scheduling system built using the Spring Boot fr
 │       └── java/com/app      # Test source code
 └── build/                    # Compiled code and build artifacts (generated)
 ```
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request.
-
-## License
-
-[Specify License Here - e.g., MIT, Apache 2.0, or leave blank if none]
